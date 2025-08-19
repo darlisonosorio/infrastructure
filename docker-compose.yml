@@ -1,0 +1,111 @@
+services:  
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  top-users:
+    build: ../top-users
+    container_name: top-users
+    ports:
+      - "8888:8888"
+    environment:
+      - NODE_ENV=production
+      - DB_URL=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=db_users
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  top-finance:
+    build: ../top-finance
+    container_name: top-finance
+    ports:
+      - "8889:8889"
+    environment:
+      - NODE_ENV=production
+      - DB_URL=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=db_finance
+      - TOP_USERS_URL=top-users
+      - TOP_USERS_PORT=8888
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app-network
+
+  top-api-gateway:
+    build: ../top-api-gateway
+    container_name: top-api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - TOP_USERS_URL=top-users
+      - TOP_USERS_PORT=8888
+      - TOP_FINANCE_URL=top-finance
+      - TOP_FINANCE_PORT=8889
+      - SECRET_KEY=a7b8c2e1f93d4a5b76e89c0f12d3a456b7c8e9d0123f45a67890bcdef1234567
+    depends_on:
+      - top-users
+      - top-finance
+    networks:
+      - app-network
+
+  app-users:
+    build:
+      context: ../app-users
+    ports:
+    - "5001:80"
+
+  app-finance:
+    build:
+      context: ../app-finance
+    ports:
+      - "5002:80"
+
+  app-react:
+    build:
+      context: ../app-react
+    ports:
+      - "80:80"
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgadmin
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: darlison.osorio@gmail.com
+  #     PGADMIN_DEFAULT_PASSWORD: root
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge
