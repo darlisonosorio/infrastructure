@@ -1,7 +1,9 @@
 # Infrastructure Project
 
 This repository contains the **infrastructure setup** for running the entire system using **Docker Compose**.  
-It includes the **database**, **backend services**, and **frontend applications**.
+No additional command is required in any of the projects.
+Just follow these steps and all services will run.
+The system includes the **database**, **backend services**, and **frontend applications**.
 
 ---
 
@@ -115,6 +117,11 @@ docker-compose up --build
 2. Access the applications:
   - API Gateway → http://localhost:3000
   - React App → http://localhost
+
+3. Login credentials:
+ - username: admin
+ - password: admin
+
 
 
 ### 🔑 Notes
