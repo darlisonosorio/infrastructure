@@ -72,24 +72,24 @@ It includes the **database**, **backend services**, and **frontend applications*
 ---
 
 ## Projects folder scructure
-root/
-│
-├── infrastructure/           # 📌 The folder containning docker-compose.yml
-│   ├── docker-compose.yml
-│   └── postgres-init/        # database initial SQL scripts
-│       └── init.sql
-├── top-users/                # 🟦 [top-users Microservice (Nest.js)](https://github.com/darlisonosorio/top-users)
-│   └── ...
-├── top-finance/              # 🟩 [top-finance Microsservice (Nest.js)](https://github.com/darlisonosorio/top-finance)
-│   └── ...
-├── top-api-gateway/          # 🚪 [API Gateway (Nest.js)](https://github.com/darlisonosorio/top-api-gateway)
-│   └── ...
-├── app-users/                # 🖥️ [app-users (React/Vite)](https://github.com/darlisonosorio/app-users)
-│   └── ...
-├── app-finance/              # 🖥️ [app-finance (React/Vite)](https://github.com/darlisonosorio/app-finance)
-│   └── ...
-└── app-react/                # 🖥️ [app-react Main App (React/Vite)](https://github.com/darlisonosorio/app-react)
-    └── ...
+root/<br>
+│<br>
+├── infrastructure/           # 📌 The folder containning docker-compose.yml<br>
+│   ├── docker-compose.yml<br>
+│   └── postgres-init/        # database initial SQL scripts<br>
+│       └── init.sql<br>
+├── top-users/                # 🟦 [top-users Microservice (Nest.js)](https://github.com/darlisonosorio/top-users)<br>
+│   └── ...<br>
+├── top-finance/              # 🟩 [top-finance Microsservice (Nest.js)](https://github.com/darlisonosorio/top-finance)<br>
+│   └── ...<br>
+├── top-api-gateway/          # 🚪 [API Gateway (Nest.js)](https://github.com/darlisonosorio/top-api-gateway)<br>
+│   └── ...<br>
+├── app-users/                # 🖥️ [app-users (React/Vite)](https://github.com/darlisonosorio/app-users)<br>
+│   └── ...<br>
+├── app-finance/              # 🖥️ [app-finance (React/Vite)](https://github.com/darlisonosorio/app-finance)<br>
+│   └── ...<br>
+└── app-react/                # 🖥️ [app-react Main App (React/Vite)](https://github.com/darlisonosorio/app-react)<br>
+    └── ...<br>
 
 ## ⚙️ Prerequisites
 
