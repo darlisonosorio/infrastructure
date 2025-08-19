@@ -92,17 +92,6 @@ services:
     ports:
       - "80:80"
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgadmin
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: darlison.osorio@gmail.com
-  #     PGADMIN_DEFAULT_PASSWORD: root
-  #   ports:
-  #     - "8080:80"
-  #   networks:
-  #     - app-network
-
 volumes:
   postgres_data:
 
